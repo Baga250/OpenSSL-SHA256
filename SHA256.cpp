@@ -62,11 +62,11 @@ void verifyHash()
     
     if (calculated_hash == user_hash) 
     {
-        std::cout << "Хэш верный! Пароль совпадает." << std::endl;
+        printColored("Хэш верный", 10);
     } 
     else
     {
-        std::cout << "Хэш неверный! Пароль не совпадает." << std::endl;
+        printColored("Хэш неверный", 12);
     }
 }
 
@@ -96,4 +96,12 @@ int main()
     }
    
     return 0;
+}
+
+void printColored(const std::string& text, int color)
+{
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, color);
+    std::cout << text << std::endl;
+    SetConsoleTextAttribute(hConsole, 7); // возврат к белому
 }
